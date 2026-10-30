@@ -1,0 +1,164 @@
+
+.evolution-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(5, 3, 22, 0.94);
+}
+
+.evolution-panel {
+  width: min(100%, 950px);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  border: 1px solid #a855f7;
+  border-radius: 18px;
+  background: #100b25;
+  color: white;
+  box-shadow: 0 0 55px rgba(168, 85, 247, 0.15);
+}
+
+.evolution-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.evolution-header h2 {
+  margin: 0;
+  color: #c084fc;
+}
+
+.evolution-header p,
+.evolution-intro p,
+.evolution-note {
+  color: #cbd5e1;
+}
+
+.evolution-header button {
+  padding: 10px 16px;
+  border: 1px solid #a855f7;
+  border-radius: 8px;
+  background: #321646;
+  color: white;
+  cursor: pointer;
+}
+
+.evolution-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.evolution-card {
+  padding: 24px;
+  border: 1px solid #49316d;
+  border-radius: 14px;
+  background: #211638;
+}
+
+.evolution-card h3 {
+  margin-top: 0;
+  font-size: 15px;
+  color: #cbd5e1;
+}
+
+.evolution-value {
+  font-size: 42px;
+  font-weight: 700;
+  color: white;
+}
+
+.evolution-card p {
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+.evolution-card strong {
+  color: #86efac;
+  font-size: 13px;
+}
+
+.evolution-note {
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .evolution-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mission 24 - Historical Growth Chart */
+
+.evolution-chart-section {
+  margin-top: 28px;
+  padding: 22px;
+  background: #211638;
+  border: 1px solid #49316d;
+  border-radius: 14px;
+}
+
+.evolution-chart-section h3 {
+  margin-top: 0;
+  color: #c084fc;
+}
+
+.evolution-chart-section p {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.evolution-chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.evolution-chart-controls button {
+  padding: 10px 18px;
+  border: 1px solid #49316d;
+  border-radius: 8px;
+  background: #100b25;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.evolution-chart-controls button[aria-pressed="true"] {
+  background: #321646;
+  border-color: #c084fc;
+  color: #ffffff;
+}
+
+.evolution-chart-controls button:hover {
+  border-color: #c084fc;
+}
+
+.evolution-chart-container {
+  width: 100%;
+  padding: 12px;
+  background: #100b25;
+  border: 1px solid #49316d;
+  border-radius: 12px;
+}
+
+.evolution-chart-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.evolution-chart-footer {
+  text-align: center;
+  font-size: 12px;
+  color: #cbd5e1;
+}

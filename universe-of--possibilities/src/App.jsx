@@ -1,5 +1,5 @@
 
-
+import "./App.css";
 import { useState, useEffect, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";import { calculateUniverseStats } from "./utils/analytics.js";
@@ -14,6 +14,9 @@ import RecommendationPanel from "./components/RecommendationPanel.jsx";
 import UniverseTimeline from "./components/UniverseTimeline.jsx";
 import UniverseAnalytics from "./components/UniverseAnalytics.jsx";
 import UniverseReplay from "./components/UniverseReplay.jsx";
+import { downloadUniverseBackup } from "./utils/backup.js";
+import BackendStarsPanel from "./components/BackendStarsPanel.jsx";
+import DatabaseGalaxyPreview from "./components/DatabaseGalaxyPreview.jsx";
 import {
   edgeKey,
   findShortestPath
@@ -482,6 +485,42 @@ const routeEdges = new Set(
 
 const routeActive = showRoute && routeIds.length > 0;
 
+
+useEffect(() => {
+  const controller = new AbortController();
+
+  async function fetchBackendStars() {
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/stars",
+        { signal: controller.signal }
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `Backend returned ${response.status}`
+        );
+      }
+
+      const stars = await response.json();
+
+      console.log("Stars from Python:", stars);
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.error(
+          "Could not connect to Python:",
+          error
+        );
+      }
+    }
+  }
+
+  fetchBackendStars();
+
+  return () => controller.abort();
+}, []);
+
+
   return (
     <div className="universe">
       <div className="header">
@@ -557,6 +596,16 @@ const routeActive = showRoute && routeIds.length > 0;
 ))}
 
       </Canvas>
+      <BackendStarsPanel />
+      <DatabaseGalaxyPreview />
+
+<button
+  type="button"
+  className="backup-trigger"
+  onClick={downloadUniverseBackup}
+>
+  💾 Backup Universe
+</button>
       
 <button
   type="button"
